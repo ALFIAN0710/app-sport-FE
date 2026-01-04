@@ -1,0 +1,7 @@
+bikin halaman 
+    1.  beranda 
+    2.  fitur 
+    3.  cara kerja 
+    4.  kontak 
+    5.  form login
+    6   form register 
