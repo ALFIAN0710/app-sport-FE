@@ -5,3 +5,77 @@ bikin halaman
     4.  kontak 
     5.  form login
     6   form register 
+
+
+sunday 4 january 2026 
+  1. pesan tim / perorangan 
+  2. data yang di butuhkan 
+      a. user 
+          - username 
+          - password 
+          - email
+          - role 
+          - create at
+          - update at
+      b. Players Roles
+          - name 
+          - position
+          - age 
+          - tinggi badan 
+          - berat badan
+          - harga perjam
+          - harga permatch
+          - status 
+          - description
+          - image / photo ( attachment )
+
+      c. Team Roles
+          - id
+          - nama tim
+          - kategori
+          - jumlah pemain
+          - harga permatch
+          - status
+          - desription 
+      d. available system 
+          - id 
+          - type 
+          - ref_id (players id / team id )
+          - tanggal 
+          - started_at 
+          - finished_at
+          - status 
+      e. booking system 
+          - id 
+          - customer_id
+          - booking_type ( players || team )
+          - date_play
+          - started_at
+          - finished_at
+          - match_location
+          - amount
+          - status 
+          - note ( catatan customer )
+      f. booking players
+          - booking_id
+          - players_id
+          - amount 
+      g. booking teams
+          - booking_id
+          - teams_id
+          - amount 
+      h. payment 
+          - id 
+          - booking_id 
+          - method 
+          - total_amount
+          - status
+          - expired_at
+      i. payment confirmation
+          - id 
+          - payment_id 
+          - bank_name
+          - name_account 
+          - description
+          - file ( attachment )
+
