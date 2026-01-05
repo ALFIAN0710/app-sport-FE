@@ -5,19 +5,39 @@ const Pembayaran = () => {
     amount: "",
     method: "credit_card",
     description: "",
+    proofImage: null,
   });
+  const [imagePreview, setImagePreview] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPaymentData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = e.target;
+    if (name === "proofImage" && files && files[0]) {
+      const file = files[0];
+      setPaymentData((prev) => ({ ...prev, [name]: file }));
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onload = (e) => setImagePreview(e.target.result);
+      reader.readAsDataURL(file);
+    } else {
+      setPaymentData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      `Pembayaran sebesar Rp${paymentData.amount} dengan metode ${paymentData.method} berhasil diproses!`
-    );
-    setPaymentData({ amount: "", method: "credit_card", description: "" });
+    const message = `Pembayaran sebesar Rp${paymentData.amount} dengan metode ${paymentData.method} berhasil diproses!`;
+    if (paymentData.proofImage) {
+      alert(`${message}\nBukti pembayaran: ${paymentData.proofImage.name}`);
+    } else {
+      alert(message);
+    }
+    setPaymentData({
+      amount: "",
+      method: "credit_card",
+      description: "",
+      proofImage: null,
+    });
+    setImagePreview(null);
   };
 
   return (
@@ -109,23 +129,40 @@ const Pembayaran = () => {
                   color: "#333",
                 }}
               >
-                Deskripsi:
+                Bukti Pembayaran:
               </label>
-              <textarea
-                name="description"
-                value={paymentData.description}
+              <input
+                type="file"
+                name="proofImage"
+                accept="image/*"
                 onChange={handleChange}
-                placeholder="Deskripsi pembayaran (opsional)"
                 style={{
                   width: "100%",
                   padding: "12px",
                   border: "1px solid #ddd",
                   borderRadius: "8px",
-                  height: "80px",
                   fontSize: "1rem",
-                  resize: "vertical",
+                  background: "white",
                 }}
               />
+              {imagePreview && (
+                <div style={{ marginTop: "15px", textAlign: "center" }}>
+                  <p style={{ marginBottom: "10px", color: "#666" }}>
+                    Preview Bukti Pembayaran:
+                  </p>
+                  <img
+                    src={imagePreview}
+                    alt="Bukti Pembayaran"
+                    style={{
+                      maxWidth: "200px",
+                      maxHeight: "200px",
+                      border: "1px solid #ddd",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                    }}
+                  />
+                </div>
+              )}
             </div>
             <button
               type="submit"
