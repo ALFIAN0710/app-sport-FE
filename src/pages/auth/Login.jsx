@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAccessToken, setLoggedinUser } from "../../redux/feature/appSlice";
 import LoadingSpinner from "../../components/shared/LoadingSpinner";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -58,8 +62,18 @@ const Login = () => {
     // Simulasi login
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      alert("Login berhasil! (Simulasi)");
-      // Redirect to home or dashboard
+
+      // Simulasi token dan user data
+      const mockToken = "mock-access-token";
+      const mockUser = { email: formData.email, name: "User Name" };
+
+      dispatch(setAccessToken(mockToken));
+      dispatch(setLoggedinUser(mockUser));
+
+      localStorage.setItem("accessToken", mockToken);
+      localStorage.setItem("loggedinUser", JSON.stringify(mockUser));
+
+      navigate("/protected/dashboard");
     } catch (error) {
       setErrors({ general: "Terjadi kesalahan. Silakan coba lagi." });
     } finally {
