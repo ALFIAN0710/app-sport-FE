@@ -3,131 +3,202 @@ import { useSelector } from "react-redux";
 const User = () => {
   const { loggedinUser } = useSelector((state) => state.app);
 
+  // Data dummy untuk daftar user
+  const dummyUsers = [
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john@example.com",
+      role: "Player",
+      status: "Aktif",
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      email: "jane@example.com",
+      role: "Coach",
+      status: "Aktif",
+    },
+    {
+      id: 3,
+      name: "Bob Johnson",
+      email: "bob@example.com",
+      role: "Player",
+      status: "Tidak Aktif",
+    },
+    {
+      id: 4,
+      name: "Alice Brown",
+      email: "alice@example.com",
+      role: "Admin",
+      status: "Aktif",
+    },
+    {
+      id: 5,
+      name: "Charlie Wilson",
+      email: "charlie@example.com",
+      role: "Player",
+      status: "Aktif",
+    },
+  ];
+
   return (
     <div>
-      <h2 style={{ color: "#333", marginBottom: "10px" }}>Informasi User</h2>
+      <h2 style={{ color: "#333", marginBottom: "10px" }}>Daftar User</h2>
       <p style={{ color: "#666", marginBottom: "30px" }}>
-        Detail akun dan profil Anda
+        Daftar semua user dalam sistem
       </p>
-      {loggedinUser ? (
-        <div
+      <div
+        style={{
+          background: "white",
+          border: "1px solid #e0e0e0",
+          padding: "30px",
+          borderRadius: "12px",
+          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+          overflowX: "auto",
+        }}
+      >
+        <table
           style={{
-            background: "white",
-            border: "1px solid #e0e0e0",
-            padding: "30px",
-            borderRadius: "12px",
-            maxWidth: "500px",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-            textAlign: "center",
+            width: "100%",
+            borderCollapse: "collapse",
+            fontSize: "1rem",
           }}
         >
-          <div
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              margin: "0 auto 20px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "2.5rem",
-              color: "white",
-            }}
-          >
-            👤
-          </div>
-          <h3 style={{ color: "#333", marginBottom: "20px" }}>Detail Akun</h3>
-          <div style={{ textAlign: "left", display: "grid", gap: "15px" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "10px 0",
-                borderBottom: "1px solid #f0f0f0",
-              }}
-            >
-              <strong style={{ color: "#555" }}>Nama:</strong>
-              <span style={{ color: "#333" }}>{loggedinUser.name}</span>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "10px 0",
-                borderBottom: "1px solid #f0f0f0",
-              }}
-            >
-              <strong style={{ color: "#555" }}>Email:</strong>
-              <span style={{ color: "#333" }}>{loggedinUser.email}</span>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "10px 0",
-                borderBottom: "1px solid #f0f0f0",
-              }}
-            >
-              <strong style={{ color: "#555" }}>Role:</strong>
-              <span
+          <thead>
+            <tr style={{ backgroundColor: "#f5f5f5" }}>
+              <th
                 style={{
-                  background: "#e8f5e8",
-                  color: "#2e7d32",
-                  padding: "4px 8px",
-                  borderRadius: "12px",
-                  fontSize: "0.9rem",
+                  padding: "12px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #e0e0e0",
                 }}
               >
-                Player
-              </span>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "10px 0",
-              }}
-            >
-              <strong style={{ color: "#555" }}>Status:</strong>
-              <span
+                ID
+              </th>
+              <th
                 style={{
-                  background: "#e8f5e8",
-                  color: "#2e7d32",
-                  padding: "4px 8px",
-                  borderRadius: "12px",
-                  fontSize: "0.9rem",
+                  padding: "12px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #e0e0e0",
                 }}
               >
-                Aktif
-              </span>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div
-          style={{
-            background: "white",
-            padding: "30px",
-            borderRadius: "12px",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-            textAlign: "center",
-            maxWidth: "400px",
-          }}
-        >
-          <div
-            style={{ fontSize: "3rem", marginBottom: "20px", color: "#ccc" }}
-          >
-            ⚠️
-          </div>
-          <p style={{ color: "#666", fontSize: "1.1rem" }}>
-            Data user tidak ditemukan.
-          </p>
-          <p style={{ color: "#999" }}>
-            Silakan login kembali untuk melihat informasi akun.
-          </p>
-        </div>
-      )}
+                Nama
+              </th>
+              <th
+                style={{
+                  padding: "12px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #e0e0e0",
+                }}
+              >
+                Email
+              </th>
+              <th
+                style={{
+                  padding: "12px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #e0e0e0",
+                }}
+              >
+                Role
+              </th>
+              <th
+                style={{
+                  padding: "12px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #e0e0e0",
+                }}
+              >
+                Status
+              </th>
+              <th
+                style={{
+                  padding: "12px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #e0e0e0",
+                }}
+              >
+                action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {dummyUsers.map((user) => (
+              <tr key={user.id} style={{ borderBottom: "1px solid #f0f0f0" }}>
+                <td style={{ padding: "12px" }}>{user.id}</td>
+                <td style={{ padding: "12px" }}>{user.name}</td>
+                <td style={{ padding: "12px" }}>{user.email}</td>
+                <td style={{ padding: "12px" }}>
+                  <span
+                    style={{
+                      background:
+                        user.role === "Admin"
+                          ? "#ffebee"
+                          : user.role === "Coach"
+                          ? "#fff3e0"
+                          : "#e8f5e8",
+                      color:
+                        user.role === "Admin"
+                          ? "#c62828"
+                          : user.role === "Coach"
+                          ? "#ef6c00"
+                          : "#2e7d32",
+                      padding: "4px 8px",
+                      borderRadius: "12px",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    {user.role}
+                  </span>
+                </td>
+                <td style={{ padding: "12px" }}>
+                  <span
+                    style={{
+                      background:
+                        user.status === "Aktif" ? "#e8f5e8" : "#ffebee",
+                      color: user.status === "Aktif" ? "#2e7d32" : "#c62828",
+                      padding: "4px 8px",
+                      borderRadius: "12px",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    {user.status}
+                  </span>
+                </td>
+                <td style={{ padding: "12px" }}>
+                  <button
+                    style={{
+                      backgroundColor: "#1976d2",
+                      color: "white",
+                      border: "none",
+                      padding: "8px 12px",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => alert(`Edit user ${user.name}`)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    style={{
+                      backgroundColor: "#fe0000ff",
+                      color: "white",
+                      border: "none",
+                      padding: "8px 12px",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => alert(`Edit user ${user.name}`)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
